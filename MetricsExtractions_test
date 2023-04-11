@@ -1,0 +1,63 @@
+import com.github.javaparser.StaticJavaParser;
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+
+public class CodeMetricsExtractor {
+
+    public static void main(String[] args) throws Exception {
+
+        // Parse the Java source code file
+        CompilationUnit cu = StaticJavaParser.parse("path/to/java/file.java");
+
+        // Create a visitor to extract code metrics
+        CodeMetricsVisitor metricsVisitor = new CodeMetricsVisitor();
+
+        // Visit all method declarations in the code and extract metrics
+        cu.accept(metricsVisitor, null);
+
+        // Print out the extracted metrics
+        System.out.println("Number of methods: " + metricsVisitor.getNumMethods());
+        System.out.println("Number of lines of code: " + metricsVisitor.getNumLinesOfCode());
+        System.out.println("Cyclomatic complexity: " + metricsVisitor.getCyclomaticComplexity());
+    }
+
+    private static class CodeMetricsVisitor extends VoidVisitorAdapter<Void> {
+
+        private int numMethods = 0;
+        private int numLinesOfCode = 0;
+        private int cyclomaticComplexity = 0;
+
+        @Override
+        public void visit(MethodDeclaration md, Void arg) {
+            super.visit(md, arg);
+
+            // Increment the number of methods
+            numMethods++;
+
+            // Extract the number of lines of code in the method
+            numLinesOfCode += md.getBody().get().getRange().get().getLineCount();
+
+            // Extract the cyclomatic complexity of the method
+            cyclomaticComplexity += md.getBody().get().findAll(com.github.javaparser.ast.stmt.IfStmt.class).size();
+            cyclomaticComplexity += md.getBody().get().findAll(com.github.javaparser.ast.stmt.SwitchStmt.class).size();
+            cyclomaticComplexity += md.getBody().get().findAll(com.github.javaparser.ast.stmt.WhileStmt.class).size();
+            cyclomaticComplexity += md.getBody().get().findAll(com.github.javaparser.ast.stmt.ForStmt.class).size();
+            cyclomaticComplexity += md.getBody().get().findAll(com.github.javaparser.ast.stmt.ForEachStmt.class).size();
+            cyclomaticComplexity += md.getBody().get().findAll(com.github.javaparser.ast.stmt.DoStmt.class).size();
+            cyclomaticComplexity++; // for the method itself
+        }
+
+        public int getNumMethods() {
+            return numMethods;
+        }
+
+        public int getNumLinesOfCode() {
+            return numLinesOfCode;
+        }
+
+        public int getCyclomaticComplexity() {
+            return cyclomaticComplexity;
+        }
+    }
+}
