@@ -34,3 +34,49 @@ public class App {
 
             // Ignora a primeira linha do arquivo CSV
             br.readLine();
+            
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(csvSplitBy);
+
+                if (data.length == 11) {
+                  JSONObject item = new JSONObject();
+                  item.put("Curso:", data[0]);
+                  item.put("Unidade Curricular:", data[1]);
+                  item.put("Turno:", data[2]);
+                  item.put("Turma:", data[3]);
+                  item.put("Inscritos:", data[4]);
+                  item.put("Dia de semana:", data[5]);
+                  item.put("Hora início:", data[6]);
+                  item.put("Hora fim:", data[7]);
+                  item.put("Data:", data[8]);
+                  item.put("Sala:", data[9]);
+                  item.put("Lotação:", data[10]);
+                  jsonArray.add(item);
+                }
+              }
+              
+              // Adiciona o array JSON ao objeto JSON
+              jsonObject.put("Horário", jsonArray);
+              
+              // Escreve o objeto JSON no arquivo JSON de saída
+              FileWriter file = new FileWriter(jsonFile);
+              file.write(jsonObject.toJSONString());
+              file.flush();
+              file.close();
+              
+              System.out.println("Arquivo JSON criado com sucesso!");
+              System.out.println(jsonObject.toJSONString()); 
+              
+            } catch (IOException e) {
+              e.printStackTrace();
+            } finally {
+              if (br != null) {
+                try {
+                  br.close();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              }
+            }
+          }
+        }
