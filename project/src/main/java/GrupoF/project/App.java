@@ -1,4 +1,5 @@
 package GrupoF.project;
+import java.util.*;  
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,11 +13,15 @@ import org.json.simple.JSONObject;
 public class App {
 
     public static void main(String[] args) {
-
-        // Define o nome do arquivo CSV de entrada e do arquivo JSON de saída
-        String csvFile = "C:\\Users\\User\\Downloads\\horario_exemplo.csv";
+   
+        
+     // Define o nome do arquivo CSV de entrada e do arquivo JSON de saída
+    	Scanner sc= new Scanner(System.in);
+        System.out.print("Enter an URL to load the file from: ");  
+        String csvFile = sc.nextLine();
+        		
+        
         String jsonFile = "output.json";
-
         BufferedReader br = null;
         String line = "";
         String csvSplitBy = ";";
