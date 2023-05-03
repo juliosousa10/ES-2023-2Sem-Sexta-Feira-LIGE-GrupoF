@@ -10,6 +10,8 @@
 
   <name>project</name>
   <description>A simple project.</description>
+  
+  
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -31,6 +33,18 @@
     <artifactId>json-simple</artifactId>
     <version>1.1.1</version>
   </dependency>
+  
+  <!-- library to convert JSON to CSV -->
+  <dependency>
+	<groupId>com.aspose</groupId>
+	<artifactId>aspose-cells</artifactId>
+	<version>23.4</version>
+  </dependency>
+
+<!-- https://mvnrepository.com/artifact/com.aspose/aspose-cells  -->
+
+
+
   </dependencies>
 
   <build>

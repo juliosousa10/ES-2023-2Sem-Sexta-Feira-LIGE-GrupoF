@@ -7,6 +7,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 
+/*
+import com.aspose.cells.Cells;
+import com.aspose.cells.JsonLayoutOptions;
+import com.aspose.cells.JsonUtility;
+import com.aspose.cells.License;
+import com.aspose.cells.Workbook;
+import java.nio.file.Files;
+import java.nio.file.Paths;*/
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -20,6 +29,7 @@ public class App {
         System.out.print("Enter an URL to load the file from: ");  
         String csvFile = sc.nextLine();
         		
+        
         
         String jsonFile = "output.json";
         BufferedReader br = null;
@@ -57,6 +67,7 @@ public class App {
                   item.put("Sala:", data[9]);
                   item.put("Lotação:", data[10]);
                   jsonArray.add(item);
+                  
                 }
               }
               
@@ -84,4 +95,37 @@ public class App {
               }
             }
           }
-        }
+}
+
+
+
+/*
+public class ConvertJSONtoCSVInJava {
+    public static void main(String[] args) throws Exception { // main method to convert JSON to comma-separated value file in Java
+
+    // Set Aspose.Cells library license to remove trial version watermark after converting JSON to CSV
+    License licenseToConvertJSON = new License();
+    licenseToConvertJSON.setLicense("Aspose.Cells.lic");
+
+    // Read input JSON file
+    String content = new String(Files.readAllBytes(Paths.get("output.json")));
+
+    // Initialize a Workbook class instance which will hold output CSV data read from JSON string
+    Workbook workbook = new Workbook();
+
+    // Access the cells
+    Cells cells = workbook.getWorksheets().get(0).getCells();
+
+    // Set JsonLayoutOptions properties
+    JsonLayoutOptions options = new JsonLayoutOptions();
+    options.setConvertNumericOrDate(true);
+    options.setArrayAsTable(true);
+    options.setIgnoreArrayTitle(true);
+    options.setIgnoreObjectTitle(true);
+    JsonUtility.importData(content, cells, 0, 0, options);
+
+    // Save output CSV file
+    workbook.save("Output.csv");
+    }
+}
+}*/
