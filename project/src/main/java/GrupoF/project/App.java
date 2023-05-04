@@ -102,7 +102,7 @@ public class App {
               file.close();
               
               System.out.println("Arquivo JSON criado com sucesso!");
-              System.out.println(jsonObject.toJSONString()); 
+              //System.out.println(jsonObject.toJSONString()); 
               
             } catch (IOException e) {
               e.printStackTrace();
@@ -117,11 +117,7 @@ public class App {
             }
     
     
-    //File jason = new File("output.json");
-    //File new_csv = new File("output.csv");
-    //JsonToCsv(jason, new_csv);
-
-     // Read the JSON file
+        // Read the JSON file
         File jsonFile1 = new File("output.json");
 
         // Parse the JSON file into a JsonNode object using Jackson
@@ -133,17 +129,19 @@ public class App {
         JsonNode firstObject = iter.next();
         String[] header = new String[firstObject.size()];
         int index = 0;
-        if (firstObject instanceof ObjectNode) {
-            ObjectNode firstObjNode = (ObjectNode) firstObject;
+        System.out.println("ola");
+        //if (firstObject instanceof ObjectNode) {
+            //ObjectNode firstObjNode = (ObjectNode) firstObject;
             
-            Iterator<String> it = firstObjNode.fieldNames();
+            Iterator<String> it = firstObject.fieldNames();
             
             while (it.hasNext()){
                 String fieldName = it.next();
+                System.out.println(fieldName);
                 header[index++] = fieldName;
             }
             
-        }
+        //}
 
         // Create a CSV writer to write the data to a file
         CSVWriter writer = new CSVWriter(new FileWriter("output.csv"));
@@ -155,17 +153,19 @@ public class App {
             JsonNode node = iter.next();
             String[] row = new String[node.size()];
             index = 0;
-            if (node instanceof ObjectNode) {
-                ObjectNode objNode = (ObjectNode) node;
+            
+            //if (node instanceof ObjectNode) {
+               // ObjectNode objNode = (ObjectNode) node;
+                System.out.println(node.size());
+                Iterator<String> it1 = node.fieldNames();
                 
-                Iterator<String> it = objNode.fieldNames();
-                
-                while (it.hasNext()){
-                    String fieldName = it.next();
-                    header[index++] = fieldName;
+                while (it1.hasNext()){
+                    String fieldName = it1.next();
+                    //header[index++] = fieldName;
+                    row[index++] = node.get(fieldName).asText();
                 }
                 
-            }
+           // }
             writer.writeNext(row);
             System.out.print("ficheiro csv criado");
             
