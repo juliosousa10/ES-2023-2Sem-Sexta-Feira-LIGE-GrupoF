@@ -117,65 +117,55 @@ public class App {
             }
     
     
-        // Read the JSON file
+     // Read the JSON file
         File jsonFile1 = new File("output.json");
 
-        // Parse the JSON file into a JsonNode object using Jackson
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonNode = mapper.readTree(jsonFile1);
 
-        // Get the keys from the first JSON object as the header row for CSV
-        Iterator<JsonNode> iter = jsonNode.elements();
-        JsonNode firstObject = iter.next();
-        String[] header = new String[firstObject.size()];
-        int index = 0;
-        System.out.println("ola");
-        //if (firstObject instanceof ObjectNode) {
-            //ObjectNode firstObjNode = (ObjectNode) firstObject;
-            
-            Iterator<String> it = firstObject.fieldNames();
-            
-            while (it.hasNext()){
-                String fieldName = it.next();
-                System.out.println(fieldName);
-                header[index++] = fieldName;
-            }
-            
-        //}
+        //System.out.println(jsonNode.get("Horário").toPrettyString());
 
+        JsonNode firstObject = jsonNode.get("Horário").get(0);
+        //System.out.println(firstObject.toPrettyString());
+        //System.out.println(firstObject.size());
+        String[] header = new String[firstObject.size()];
+
+        Iterator<JsonNode> iter = firstObject.elements();
+
+        int index = 0;
+        while(iter.hasNext()){
+          String fieldName = iter.next().asText();
+          //System.out.println(fieldName);
+          header[index++] = fieldName;
+        }
         // Create a CSV writer to write the data to a file
         CSVWriter writer = new CSVWriter(new FileWriter("output.csv"));
-        writer.writeNext(header); // write the header row
+        writer.writeNext(header);
 
-        // Write each JSON object as a CSV row
-        iter = jsonNode.elements();
-        while (iter.hasNext()) {
-            JsonNode node = iter.next();
-            String[] row = new String[node.size()];
-            index = 0;
-            
-            //if (node instanceof ObjectNode) {
-               // ObjectNode objNode = (ObjectNode) node;
-                System.out.println(node.size());
-                Iterator<String> it1 = node.fieldNames();
-                
-                while (it1.hasNext()){
-                    String fieldName = it1.next();
-                    //header[index++] = fieldName;
-                    row[index++] = node.get(fieldName).asText();
-                }
-                
-           // }
-            writer.writeNext(row);
-            System.out.print("ficheiro csv criado");
-            
+        JsonNode h_Obj = jsonNode.get("Horário");
+
+        for(int i = 1; i < h_Obj.size(); i++){
+          JsonNode node = h_Obj.get(i);
+          String[] row = new String[node.size()];
+          //System.out.println(node.toPrettyString());
+
+          Iterator<JsonNode> iter_n = node.elements();
+
+          int j = 0;
+          while(iter_n.hasNext()){
+            String value = iter_n.next().asText();
+            //System.out.println(value);
+            row[j++] = value;
+          }
+          
+          writer.writeNext(row);
         }
-        
-        // Close the CSV writer
+
+
         writer.close();
-        
-        
-    }
+
+        // Close the CSV writer
+        }
     
     
     
