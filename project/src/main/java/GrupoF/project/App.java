@@ -19,17 +19,38 @@ import java.nio.file.Paths;*/
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class App {
 
-    public static void main(String[] args) {
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema.Builder;
+import java.io.File;
+import java.io.IOException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.opencsv.CSVWriter;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Iterator;
+import com.opencsv.CSVWriter;
+
+public class App {
+	
+
+
+    public static void main(String[] args) throws IOException {
    
         
      // Define o nome do arquivo CSV de entrada e do arquivo JSON de saída
     	Scanner sc= new Scanner(System.in);
         System.out.print("Enter an URL to load the file from: ");  
         String csvFile = sc.nextLine();
-        		
-        
         
         String jsonFile = "output.json";
         BufferedReader br = null;
@@ -94,38 +115,70 @@ public class App {
                 }
               }
             }
-          }
-}
+    
+    
+    //File jason = new File("output.json");
+    //File new_csv = new File("output.csv");
+    //JsonToCsv(jason, new_csv);
 
+     // Read the JSON file
+        File jsonFile1 = new File("output.json");
 
+        // Parse the JSON file into a JsonNode object using Jackson
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonNode = mapper.readTree(jsonFile1);
 
-/*
-public class ConvertJSONtoCSVInJava {
-    public static void main(String[] args) throws Exception { // main method to convert JSON to comma-separated value file in Java
+        // Get the keys from the first JSON object as the header row for CSV
+        Iterator<JsonNode> iter = jsonNode.elements();
+        JsonNode firstObject = iter.next();
+        String[] header = new String[firstObject.size()];
+        int index = 0;
+        if (firstObject instanceof ObjectNode) {
+            ObjectNode firstObjNode = (ObjectNode) firstObject;
+            
+            Iterator<String> it = firstObjNode.fieldNames();
+            
+            while (it.hasNext()){
+                String fieldName = it.next();
+                header[index++] = fieldName;
+            }
+            
+        }
 
-    // Set Aspose.Cells library license to remove trial version watermark after converting JSON to CSV
-    License licenseToConvertJSON = new License();
-    licenseToConvertJSON.setLicense("Aspose.Cells.lic");
+        // Create a CSV writer to write the data to a file
+        CSVWriter writer = new CSVWriter(new FileWriter("output.csv"));
+        writer.writeNext(header); // write the header row
 
-    // Read input JSON file
-    String content = new String(Files.readAllBytes(Paths.get("output.json")));
-
-    // Initialize a Workbook class instance which will hold output CSV data read from JSON string
-    Workbook workbook = new Workbook();
-
-    // Access the cells
-    Cells cells = workbook.getWorksheets().get(0).getCells();
-
-    // Set JsonLayoutOptions properties
-    JsonLayoutOptions options = new JsonLayoutOptions();
-    options.setConvertNumericOrDate(true);
-    options.setArrayAsTable(true);
-    options.setIgnoreArrayTitle(true);
-    options.setIgnoreObjectTitle(true);
-    JsonUtility.importData(content, cells, 0, 0, options);
-
-    // Save output CSV file
-    workbook.save("Output.csv");
+        // Write each JSON object as a CSV row
+        iter = jsonNode.elements();
+        while (iter.hasNext()) {
+            JsonNode node = iter.next();
+            String[] row = new String[node.size()];
+            index = 0;
+            if (node instanceof ObjectNode) {
+                ObjectNode objNode = (ObjectNode) node;
+                
+                Iterator<String> it = objNode.fieldNames();
+                
+                while (it.hasNext()){
+                    String fieldName = it.next();
+                    header[index++] = fieldName;
+                }
+                
+            }
+            writer.writeNext(row);
+            System.out.print("ficheiro csv criado");
+            
+        }
+        
+        // Close the CSV writer
+        writer.close();
+        
+        
     }
+    
+    
+    
 }
-}*/
+
+
