@@ -24,12 +24,10 @@ import java.util.LinkedHashMap;
 
 public class GUIApp  {
 	
-	
     private CsvToJSon dealer;
     
     public GUIApp() {
     	dealer = new CsvToJSon();
-    	
     }
 
     public static void main(String[] args) {
