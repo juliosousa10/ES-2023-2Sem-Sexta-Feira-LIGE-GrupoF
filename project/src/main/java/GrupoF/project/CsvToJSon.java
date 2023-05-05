@@ -37,6 +37,7 @@ public class CsvToJSon {
 			JOptionPane.showMessageDialog(converter_window, "O formato do ficheiro de input não é válido");
 			System.exit(0);
 		}
+		
 			
 		
         BufferedReader br = null;

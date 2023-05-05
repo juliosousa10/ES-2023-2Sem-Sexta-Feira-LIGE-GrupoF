@@ -28,6 +28,7 @@ public class GUIApp  {
     
     public GUIApp() {
     	dealer = new CsvToJSon();
+    	
     }
 
     public static void main(String[] args) {
