@@ -25,9 +25,11 @@ import java.util.LinkedHashMap;
 public class GUIApp  {
 	
     private CsvToJSon dealer;
+    //aqui tb
     
     public GUIApp() {
     	dealer = new CsvToJSon();
+    	//criar objeto da classe que criar
     }
     
     public static void main(String[] args) {
