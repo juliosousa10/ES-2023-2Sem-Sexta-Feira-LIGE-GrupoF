@@ -47,6 +47,7 @@ public class App {
     public static void main(String[] args) throws IOException {
    
         
+    	
      // Define o nome do arquivo CSV de entrada e do arquivo JSON de saída
     	Scanner sc= new Scanner(System.in);
         System.out.print("Enter an URL to load the file from: ");  
