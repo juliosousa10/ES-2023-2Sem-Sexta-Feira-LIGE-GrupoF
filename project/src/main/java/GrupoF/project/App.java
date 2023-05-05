@@ -135,11 +135,15 @@ public class App {
         int index = 0;
         while(iter.hasNext()){
           String fieldName = iter.next().asText();
+          
           //System.out.println(fieldName);
           header[index++] = fieldName;
         }
         // Create a CSV writer to write the data to a file
         CSVWriter writer = new CSVWriter(new FileWriter("output.csv"));
+        String[] separator = new String[1];
+        separator[0] = "sep=,";
+        writer.writeNext(separator);
         writer.writeNext(header);
 
         JsonNode h_Obj = jsonNode.get("Horário");
