@@ -29,6 +29,7 @@ public class CsvToJSon {
 	
 	private JFrame converter_window = new JFrame();
 	private JTextField csvTextField;
+	
 
 
 	public boolean processCSV(String csvFile) {

@@ -24,6 +24,7 @@ import java.util.LinkedHashMap;
 
 public class GUIApp  {
 	
+	
     private CsvToJSon dealer;
     
     public GUIApp() {
