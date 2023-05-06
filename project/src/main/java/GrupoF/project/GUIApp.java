@@ -1,4 +1,3 @@
-package pt.iscte_iul.ista.Horario;	
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
