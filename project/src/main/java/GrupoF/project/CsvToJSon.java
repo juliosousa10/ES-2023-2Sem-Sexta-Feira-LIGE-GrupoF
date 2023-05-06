@@ -1,4 +1,4 @@
-package pt.iscte_iul.ista.Horario;
+package GrupoF.project;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -88,7 +88,7 @@ public class CsvToJSon {
             file.flush();
             file.close();
 
-            System.out.println(jsonObject.toJSONString());
+          
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -103,5 +103,70 @@ public class CsvToJSon {
         }
         return true;
     }
-}
+ public void dealCsv_Json() {
+	       
+	    	converter_window.setBounds(100, 100, 500, 250);
+	    	converter_window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	    	converter_window.getContentPane().setLayout(null);
+
+	        JLabel lblCsvFile = new JLabel("File:");
+	        lblCsvFile.setBounds(65, 28, 70, 20);
+	        converter_window.getContentPane().add(lblCsvFile);
+
+	        csvTextField = new JTextField();
+	        csvTextField.setBounds(100, 30, 250, 20);
+	        converter_window.getContentPane().add(csvTextField);
+	        csvTextField.setColumns(10);
+
+	        JButton btnImport = new JButton("Import");
+	        btnImport.setBounds(360, 30, 80, 20);
+	        converter_window.getContentPane().add(btnImport);
+	        btnImport.addActionListener(new ActionListener() {
+	      	  public void actionPerformed(ActionEvent e) {
+	      	        JFileChooser fileChooser = new JFileChooser();
+	      	        fileChooser.setFileFilter(new FileNameExtensionFilter("Ficheiros CSV", "csv"));
+	      	        int returnValue = fileChooser.showOpenDialog(null);
+	      	        if (returnValue == JFileChooser.APPROVE_OPTION) {
+	      	            File selectedFile = fileChooser.getSelectedFile();
+	      	            csvTextField.setText(selectedFile.getAbsolutePath());
+	              }
+	          }
+	      });
+
+	        JButton btnConvert = new JButton("Convert");
+	        btnConvert.setBounds(180, 80, 100, 25);
+	        converter_window.getContentPane().add(btnConvert);
+	        btnConvert.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                String csvFile = csvTextField.getText();
+	                if (!csvFile.isEmpty() && (processCSV(csvFile)))
+	                		{JOptionPane.showMessageDialog(converter_window, "Conversão CSV -> JSON feita com sucesso! \n O ficheiro JSON foi guardado em: " + Paths.get(csvFile).getParent().toString());
+	                }
+	            }
+	        });
+
+	        converter_window.setVisible(true);
+	        
+	    }
+	    
+	    
+	        public boolean isCSVFile(String filePath) {
+	            Path path = Paths.get(filePath);
+	            File file = path.toFile();
+
+	            if (file.exists() && file.isFile()) {
+	                String fileName = file.getName();
+	                int extensionIndex = fileName.lastIndexOf(".");
+	                if (extensionIndex != -1) {
+	                    String fileExtension = fileName.substring(extensionIndex + 1);
+	                    return fileExtension.equalsIgnoreCase("csv");
+	                }
+	            }
+
+	            return false;
+	        }
+
+	}
+
+ 
  
