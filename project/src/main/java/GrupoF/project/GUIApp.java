@@ -1,6 +1,4 @@
-
 package GrupoF.project;
-
 
 import javax.swing.JButton;
 
@@ -12,9 +10,12 @@ import java.awt.event.ActionListener;
 public class GUIApp  {
 	
     private CsvToJSon dealer;
+    private JsonToCSV dealer1;
     
     public GUIApp() {
     	dealer = new CsvToJSon();
+    	dealer1 = new JsonToCSV();
+    	
     }
     
     public static void main(String[] args) {
@@ -48,7 +49,7 @@ public class GUIApp  {
         options.getContentPane().add(option2);
         option2.addActionListener(new ActionListener() {
       	  public void actionPerformed(ActionEvent e) {
-      		 //Chamar código que converte JSON em CSV
+      		 dealer1.dealJson_Csv();
               
           }
       });
