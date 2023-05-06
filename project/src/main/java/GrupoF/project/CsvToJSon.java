@@ -1,4 +1,4 @@
-
+package GrupoF.project;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -77,7 +77,7 @@ public class CsvToJSon {
                     jsonArray.add(item);
                 }	
             }
-
+            
             jsonObject.put("Horário", jsonArray);
             
             String csvPath = Paths.get(csvFile).getParent().toString();
@@ -166,7 +166,7 @@ public class CsvToJSon {
 	            return false;
 	        }
 
-	}
-
+	
+}
  
  
