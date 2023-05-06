@@ -23,19 +23,17 @@ import java.util.LinkedHashMap;
 
 public class GUIApp  {
 	
-	
     private CsvToJSon dealer;
     
     public GUIApp() {
     	dealer = new CsvToJSon();
-    	
     }
-
+    
     public static void main(String[] args) {
         GUIApp app = new GUIApp();
         app.initialize();
     }
-
+    
     private void initialize() {
      JFrame options;
      JButton option1;
@@ -47,7 +45,6 @@ public class GUIApp  {
     	options.setBounds(100, 100, 500, 250);
     	options.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	options.getContentPane().setLayout(null);
-
 
         option1 = new JButton("CSV -> JSon");
         option1.setBounds(188, 30, 125, 25);
