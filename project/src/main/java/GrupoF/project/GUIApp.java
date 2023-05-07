@@ -19,14 +19,8 @@ public class GUIApp  {
     	dealer = new CsvToJSon();
     	dealer1 = new JsonToCSV();
     	dealer2 = new CsvToHtml();
-    	
-
-    private JsonToHtml dealer1 = new JsonToHtml();//mudança1
-    
-    public GUIApp() {
-    	dealer = new CsvToJSon();
-
     }
+    	
     
     public static void main(String[] args) {
         GUIApp app = new GUIApp();
@@ -80,7 +74,7 @@ public class GUIApp  {
         option4.addActionListener(new ActionListener() {
       	  public void actionPerformed(ActionEvent e) {
       		//Chamar código que converte JSON em HTML
-             dealer1.setVisible(true);//mudança2
+             
           }
       });
 
