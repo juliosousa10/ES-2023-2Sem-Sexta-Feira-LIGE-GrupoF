@@ -1,4 +1,4 @@
-package pt.iscte_iul.ista.Horario;
+package GrupoF.project;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -88,7 +88,7 @@ public class CsvToJSon {
             file.flush();
             file.close();
 
-            System.out.println(jsonObject.toJSONString());
+          
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -168,5 +168,4 @@ public class CsvToJSon {
 
 	}
 
- 
- 
+

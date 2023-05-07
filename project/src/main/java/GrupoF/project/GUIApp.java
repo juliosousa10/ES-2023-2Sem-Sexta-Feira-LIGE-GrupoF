@@ -1,33 +1,31 @@
-package pt.iscte_iul.ista.Horario;	
+
+package GrupoF.project;
+
 
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+import javax.swing.JFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.LinkedHashMap;
 
 public class GUIApp  {
 	
     private CsvToJSon dealer;
+    private JsonToCSV dealer1;
+    private CsvToHtml dealer2;
     
     public GUIApp() {
     	dealer = new CsvToJSon();
+    	dealer1 = new JsonToCSV();
+    	dealer2 = new CsvToHtml();
+    	
+
+    private JsonToHtml dealer1 = new JsonToHtml();//mudança1
+    
+    public GUIApp() {
+    	dealer = new CsvToJSon();
+
     }
     
     public static void main(String[] args) {
@@ -44,7 +42,7 @@ public class GUIApp  {
     	
     	options = new JFrame();
     	options.setBounds(100, 100, 500, 250);
-    	options.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	//options.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	options.getContentPane().setLayout(null);
 
         option1 = new JButton("CSV -> JSon");
@@ -71,7 +69,7 @@ public class GUIApp  {
         options.getContentPane().add(option3);
         option3.addActionListener(new ActionListener() {
       	  public void actionPerformed(ActionEvent e) {
-      		 //Chamar código que converte CSV em HTML
+      		 dealer2.dealCsv_Html();
               
           }
       });
@@ -82,7 +80,7 @@ public class GUIApp  {
         option4.addActionListener(new ActionListener() {
       	  public void actionPerformed(ActionEvent e) {
       		//Chamar código que converte JSON em HTML
-              
+             dealer1.setVisible(true);//mudança2
           }
       });
 
