@@ -27,7 +27,6 @@ public class CsvToHtml {
 	private JFrame converter_window = new JFrame();
 	private JTextField csvTextField;
 	
-	public class CsvToHtmlTable {
 		
 		public boolean process_Csv(String csvFile) {
 			
@@ -39,7 +38,8 @@ public class CsvToHtml {
 			// read lines of csv to a string array list
 	        List<String> lines = new ArrayList<String>();
 	        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-	            String currentLine;
+	            String firstline = reader.readLine();
+	        	String currentLine;
 	            while ((currentLine = reader.readLine()) != null) {
 	                lines.add(currentLine);
 	            }
@@ -139,5 +139,6 @@ public class CsvToHtml {
 		
 	    
 	    
-	}
+	
+
 }
