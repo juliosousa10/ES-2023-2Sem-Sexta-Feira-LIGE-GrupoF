@@ -22,7 +22,6 @@ public class GUIApp {
         dealer1 = new JsonToCSV();
         dealer2 = new CsvToHtml();
     }
-
     public static void main(String[] args) {
         GUIApp app = new GUIApp();
         app.initialize();
@@ -86,6 +85,7 @@ public class GUIApp {
         option4.setBounds(188, 135, 125, 25);
         options.getContentPane().add(option4);
         option4.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
                 //Chamar código que converte JSON em HTML
             }
@@ -168,6 +168,13 @@ public class GUIApp {
                 scheduleCreatorWindow.setVisible(true);
             }
         });
+
+      	  public void actionPerformed(ActionEvent e) {
+      		//Chamar código que converte JSON em HTML
+             
+          }
+      });
+
 
         options.setVisible(true);
     }
