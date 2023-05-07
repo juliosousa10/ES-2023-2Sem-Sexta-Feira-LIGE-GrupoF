@@ -1,6 +1,4 @@
-
 package GrupoF.project;
-
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +30,7 @@ public class CsvToJSon {
 	
 	private JFrame converter_window = new JFrame();
 	private JTextField csvTextField;
+
 
 	public boolean processCSV(String csvFile) {
 		
@@ -78,7 +77,7 @@ public class CsvToJSon {
                     jsonArray.add(item);
                 }	
             }
-            
+
             jsonObject.put("Horário", jsonArray);
             
             String csvPath = Paths.get(csvFile).getParent().toString();
@@ -89,7 +88,7 @@ public class CsvToJSon {
             file.flush();
             file.close();
 
-            System.out.println(jsonObject.toJSONString());
+          
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -167,7 +166,6 @@ public class CsvToJSon {
 	            return false;
 	        }
 
-	
-}
- 
- 
+	}
+
+
