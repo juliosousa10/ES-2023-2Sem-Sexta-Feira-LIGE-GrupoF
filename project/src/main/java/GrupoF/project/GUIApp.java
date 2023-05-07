@@ -1,4 +1,6 @@
+
 package GrupoF.project;
+
 
 import javax.swing.JButton;
 
@@ -10,12 +12,10 @@ import java.awt.event.ActionListener;
 public class GUIApp  {
 	
     private CsvToJSon dealer;
-    private JsonToCSV dealer1;
+    private JsonToHtml dealer1 = new JsonToHtml();//mudança1
     
     public GUIApp() {
     	dealer = new CsvToJSon();
-    	dealer1 = new JsonToCSV();
-    	
     }
     
     public static void main(String[] args) {
@@ -32,7 +32,7 @@ public class GUIApp  {
     	
     	options = new JFrame();
     	options.setBounds(100, 100, 500, 250);
-    	options.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	//options.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	options.getContentPane().setLayout(null);
 
         option1 = new JButton("CSV -> JSon");
@@ -49,7 +49,7 @@ public class GUIApp  {
         options.getContentPane().add(option2);
         option2.addActionListener(new ActionListener() {
       	  public void actionPerformed(ActionEvent e) {
-      		 dealer1.dealJson_Csv();
+      		 //Chamar código que converte JSON em CSV
               
           }
       });
@@ -70,7 +70,7 @@ public class GUIApp  {
         option4.addActionListener(new ActionListener() {
       	  public void actionPerformed(ActionEvent e) {
       		//Chamar código que converte JSON em HTML
-              
+             dealer1.setVisible(true);//mudança2
           }
       });
 
