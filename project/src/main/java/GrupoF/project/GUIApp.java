@@ -11,10 +11,12 @@ public class GUIApp  {
 	
     private CsvToJSon dealer;
     private JsonToCSV dealer1;
+    private CsvToHtml dealer2;
     
     public GUIApp() {
     	dealer = new CsvToJSon();
     	dealer1 = new JsonToCSV();
+    	dealer2 = new CsvToHtml();
     	
     }
     
@@ -59,7 +61,7 @@ public class GUIApp  {
         options.getContentPane().add(option3);
         option3.addActionListener(new ActionListener() {
       	  public void actionPerformed(ActionEvent e) {
-      		 //Chamar código que converte CSV em HTML
+      		 dealer2.dealCsv_Html();
               
           }
       });

@@ -72,7 +72,7 @@ public class JsonToCSV {
 	    }
 	    // Create a CSV writer to write the data to a file
 	    String csvPath = Paths.get(jsonFile).getParent().toString();
-        String csvFile = csvPath + File.separator + "output.csv";
+        String csvFile = csvPath + File.separator + "horario.csv";
 	    
 	    CSVWriter writer = new CSVWriter(new FileWriter(csvFile));
 	    String[] separator = new String[1];
@@ -148,9 +148,9 @@ public class JsonToCSV {
         converter_window.getContentPane().add(btnConvert);
         btnConvert.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String csvFile = jsonTextField.getText();
-                if (!csvFile.isEmpty() && (process_Json(csvFile)))
-                		{JOptionPane.showMessageDialog(converter_window, "Conversão JSON -> CSV feita com sucesso! \n O ficheiro CSV foi guardado em: " + Paths.get(csvFile).getParent().toString());
+                String jsonFile = jsonTextField.getText();
+                if (!jsonFile.isEmpty() && (process_Json(jsonFile)))
+                		{JOptionPane.showMessageDialog(converter_window, "Conversão JSON -> CSV feita com sucesso! \n O ficheiro CSV foi guardado em: " + Paths.get(jsonFile).getParent().toString());
                 }
             }
         });
