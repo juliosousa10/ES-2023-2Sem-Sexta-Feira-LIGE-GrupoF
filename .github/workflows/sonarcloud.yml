@@ -34,4 +34,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: cd juliosousa10_ES-2023-2Sem-Sexta-Feira-LIGE-GrupoF/project && mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=juliosousa10_ES-2023-2Sem-Sexta-Feira-LIGE-GrupoF
+        run: cd project && mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=juliosousa10_ES-2023-2Sem-Sexta-Feira-LIGE-GrupoF
