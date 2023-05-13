@@ -11,11 +11,11 @@ import java.awt.event.ActionListener;
 
 public class GUIApp  {
 	
-    private CsvToJSon dealer;
-    private JsonToCSV dealer1;
-    private CsvToHtml dealer2;
-    private JsonToHtml dealer3;
-    private scheduleCreatorHtml dealer4;
+    public CsvToJSon dealer;
+    public JsonToCSV dealer1;
+    public CsvToHtml dealer2;
+    public JsonToHtml dealer3;
+    public scheduleCreatorHtml dealer4;
     
     public GUIApp() {
     	dealer = new CsvToJSon();
